@@ -1,27 +1,10 @@
-import threading 
 import socket
 import sys
 import time
 
-#host = ''
-#port = 9000
-#locaddr = (host,port) 
-
-#UDP Link
-#sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-#tello_address = ('192.168.10.1', 8889)
-
-#sock.bind(locaddr)
-
-
-
-
 class Drone(object):
     """description of class"""
-
 #region Setup
-
     def __init__(self, ip,port):
         self.TelloIp = ip
         print("ip: " + ip)
@@ -40,8 +23,9 @@ class Drone(object):
         msg = TelloMessage.encode(encoding="utf-8")
         sent = self.sock.sendto(msg,self.tello_address)
         data, server = self.sock.recvfrom(1518)
-        #print("returværdi")
+        #print("returvaerdi")
         print(data.decode(encoding="utf-8"))
+
         return "from sendmessage " + TelloMessage + " end "
 #endregion
 
@@ -50,7 +34,7 @@ class Drone(object):
 
     def connect(self):
         print("command interface initializing")
-        result = self.sendMessage("command")
+        result = self.sendMessage("Command")
         print (result)
 
     def end(self):
@@ -84,14 +68,21 @@ class Drone(object):
     def battery(self):
         print("Battery level in %: ")
         result = self.sendMessage("battery?")
+        return result
     
     def qspeed(self):
         print("speed is set at: ")
         result = self.sendMessage("speed?")
+        return result
 
     def ftime(self):
         print("Drone has flown for: ")
         result = self.sendMessage("time?")
+        return result
+
+    def printinfo(self):
+        print("Hello Drone at: "+ self.TelloIp)
+
 #endregion
 
 
@@ -99,57 +90,57 @@ class Drone(object):
 
     def cw(self,x):
         if (x >= 1 and x <= 360):
-            result = self.sendMessage("cw "+x)
-            print("Rotating Clockwise"+x)
+            result = self.sendMessage("cw " + str(x))
+            print("Rotating Clockwise" + str(x))
         else:
             print("X has to be between 1-360")
 
     def ccw(self,x):
         if (x >= 1 and x <= 360):
-            result = self.sendMessage("ccw "+x)
-            print("Rotating Counterclockwise"+x)
+            result = self.sendMessage("ccw " + str(x))
+            print("Rotating Counterclockwise" + str(x))
         else:
             print("X has to be between 1-360")
 
     def ascend_alt(self,x):
         if (x >= 20 and x <= 500):
-            result = self.sendMessage("up "+x)
-            print("Ascending to "+x)
+            result = self.sendMessage("up " + str(x))
+            print("Ascending to " + str(x))
         else:
             print("X has to be between 20-500")
     
     def descend_alt(self,x):
         if (x >= 20 and x <= 500):
-            result = self.sendMessage("down "+x)
-            print("Descending to "+x)
+            result = self.sendMessage("down " + str(x))
+            print("Descending to " + str(x))
         else:
             print("X has to be between 20-500")
     
     def forward(self,x):
         if (x >= 20 and x <= 500):
-            result = self.sendMessage("forward "+x)
-            print("Moving forward "+x)
+            result = self.sendMessage("forward " + str(x))
+            print("Moving forward " + str(x))
         else:
             print("X has to be between 20-500")
     
     def backwards(self,x):
         if (x >= 20 and x <= 500):
-            result = self.sendMessage("back "+x)
-            print("Moving backwards "+x)
+            result = self.sendMessage("back " + str(x))
+            print("Moving backwards " + str(x))
         else:
             print("X has to be between 20-500")
    
     def left(self,x):
         if (x >= 20 and x <= 500):
-            result = self.sendMessage("left "+x)
-            print("Moving left "+x)
+            result = self.sendMessage("left " + str(x))
+            print("Moving left " + str(x))
         else:
             print("X has to be between 20-500")
 
     def right(self,x):
         if (x >= 20 and x <= 500):
-            result = self.sendMessage("right "+x)
-            print("Moving right "+x)
+            result = self.sendMessage("right " + str(x))
+            print("Moving right " + str(x))
         else:
             print("X has to be between 20-500")
 #endregion
