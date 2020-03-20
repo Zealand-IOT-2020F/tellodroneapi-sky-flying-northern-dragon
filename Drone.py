@@ -20,6 +20,8 @@ import time
 class Drone(object):
     """description of class"""
 
+#region Setup
+
     def __init__(self, ip,port):
         self.TelloIp = ip
         print("ip: " + ip)
@@ -41,8 +43,10 @@ class Drone(object):
         #print("returværdi")
         print(data.decode(encoding="utf-8"))
         return "from sendmessage " + TelloMessage + " end "
+#endregion
 
-#Startup/shutdown
+
+#region Startup/shutdown
 
     def connect(self)
         print("command interface initializing")
@@ -52,9 +56,10 @@ class Drone(object):
     def end(self):
         print("end")
         self.sock.close()
+#endregion
 
 
-#Takeoff/Landing
+#region Takeoff/Landing
 
     def takeOff(self):
         print("Taking off")
@@ -71,9 +76,10 @@ class Drone(object):
     def HALT(self)
         print("AAAAAAAAH *PANTS ON HEAD* *HEADLESS CHICKEN* Gentlemen it's been an honor...")
         result = self.sendMessage("emergency")
+#endregion
 
 
-#Diagnostics
+#region Diagnostics
 
     def battery(self)
         print("Battery level in %: ")
@@ -86,8 +92,10 @@ class Drone(object):
     def ftime(self)
         print("Drone has flown for: ")
         result = self.sendMessage("time?")
+#endregion
 
-#Flightcontrols
+
+#region Flightcontrols
 
     def cw(self,x):
         if (x >= 1 and x <= 360):
@@ -144,6 +152,7 @@ class Drone(object):
             print("Moving right "+x)
         else:
             print("X has to be between 20-500")
+#endregion
 
 
 #Advanced flightcontrols
