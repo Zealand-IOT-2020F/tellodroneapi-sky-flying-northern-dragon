@@ -48,7 +48,7 @@ class Drone(object):
 
 #region Startup/shutdown
 
-    def connect(self)
+    def connect(self):
         print("command interface initializing")
         result = self.sendMessage("command")
         print (result)
@@ -65,15 +65,15 @@ class Drone(object):
         print("Taking off")
         result = self.sendMessage("takeoff")
 
-    def land(self)
+    def land(self):
         print("Landing")
         result = self.sendMessage("land")
 
-    def stop(self)
+    def stop(self):
         print("Stopping")
         result = self.sendMessage("stop")
     
-    def HALT(self)
+    def HALT(self):
         print("AAAAAAAAH *PANTS ON HEAD* *HEADLESS CHICKEN* Gentlemen it's been an honor...")
         result = self.sendMessage("emergency")
 #endregion
@@ -81,15 +81,15 @@ class Drone(object):
 
 #region Diagnostics
 
-    def battery(self)
+    def battery(self):
         print("Battery level in %: ")
         result = self.sendMessage("battery?")
     
-    def qspeed(self)
+    def qspeed(self):
         print("speed is set at: ")
         result = self.sendMessage("speed?")
 
-    def ftime(self)
+    def ftime(self):
         print("Drone has flown for: ")
         result = self.sendMessage("time?")
 #endregion
@@ -111,42 +111,42 @@ class Drone(object):
         else:
             print("X has to be between 1-360")
 
-    def ascend_alt(self,x)
+    def ascend_alt(self,x):
         if (x >= 20 and x <= 500):
             result = self.sendMessage("up "+x)
             print("Ascending to "+x)
         else:
             print("X has to be between 20-500")
     
-    def descend_alt(self,x)
+    def descend_alt(self,x):
         if (x >= 20 and x <= 500):
             result = self.sendMessage("down "+x)
             print("Descending to "+x)
         else:
             print("X has to be between 20-500")
     
-    def forward(self,x)
+    def forward(self,x):
         if (x >= 20 and x <= 500):
             result = self.sendMessage("forward "+x)
             print("Moving forward "+x)
         else:
             print("X has to be between 20-500")
     
-    def backwards(self,x)
+    def backwards(self,x):
         if (x >= 20 and x <= 500):
             result = self.sendMessage("back "+x)
             print("Moving backwards "+x)
         else:
             print("X has to be between 20-500")
    
-    def left(self,x)
+    def left(self,x):
         if (x >= 20 and x <= 500):
             result = self.sendMessage("left "+x)
             print("Moving left "+x)
         else:
             print("X has to be between 20-500")
 
-    def right(self,x)
+    def right(self,x):
         if (x >= 20 and x <= 500):
             result = self.sendMessage("right "+x)
             print("Moving right "+x)
