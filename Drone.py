@@ -3,16 +3,16 @@ import socket
 import sys
 import time
 
-host = ''
-port = 9000
-locaddr = (host,port) 
+#host = ''
+#port = 9000
+#locaddr = (host,port) 
 
 #UDP Link
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+#sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
-tello_address = ('192.168.10.1', 8889)
+#tello_address = ('192.168.10.1', 8889)
 
-sock.bind(locaddr)
+#sock.bind(locaddr)
 
 
 
@@ -48,6 +48,7 @@ class Drone(object):
         print("command interface initializing")
         result = self.sendMessage("command")
         print (result)
+
     def end(self):
         print("end")
         self.sock.close()
@@ -56,7 +57,7 @@ class Drone(object):
 #Takeoff/Landing
 
     def takeOff(self):
-        print("takeOff")
+        print("Taking off")
         result = self.sendMessage("takeoff")
 
     def land(self)
@@ -68,7 +69,7 @@ class Drone(object):
         result = self.sendMessage("stop")
     
     def HALT(self)
-        print("AAAAAAAAH *PANTS ON HEAD* *HEADLESS CHICKEN*")
+        print("AAAAAAAAH *PANTS ON HEAD* *HEADLESS CHICKEN* Gentlemen it's been an honor...")
         result = self.sendMessage("emergency")
 
 
@@ -89,35 +90,60 @@ class Drone(object):
 #Flightcontrols
 
     def cw(self,x):
-        print("cw")
-        r = self.sendMessage("cw "+x)
+        if (x >= 1 and x <= 360):
+            result = self.sendMessage("cw "+x)
+            print("Rotating Clockwise"+x)
+        else:
+            print("X has to be between 1-360")
 
     def ccw(self,x):
-        print("ccw")
-        r = self.sendMessage("ccw "+x)
+        if (x >= 1 and x <= 360):
+            result = self.sendMessage("ccw "+x)
+            print("Rotating Counterclockwise"+x)
+        else:
+            print("X has to be between 1-360")
 
     def ascend_alt(self,x)
-        print("Ascending to "+x)
-        result = self.sendMessage("up "+x)
+        if (x >= 20 and x <= 500):
+            result = self.sendMessage("up "+x)
+            print("Ascending to "+x)
+        else:
+            print("X has to be between 20-500")
     
     def descend_alt(self,x)
-        print("Descending to "+x)
-        result = self.sendMessage("down "+x)
+        if (x >= 20 and x <= 500):
+            result = self.sendMessage("down "+x)
+            print("Descending to "+x)
+        else:
+            print("X has to be between 20-500")
     
     def forward(self,x)
-        print("Moving forward "+x)
-        result = self.sendMessage("forward "+x)
+        if (x >= 20 and x <= 500):
+            result = self.sendMessage("forward "+x)
+            print("Moving forward "+x)
+        else:
+            print("X has to be between 20-500")
     
     def backwards(self,x)
-        print("Moving backwards"+x)
-        result = self.sendMessage("back "+x)
-    
+        if (x >= 20 and x <= 500):
+            result = self.sendMessage("back "+x)
+            print("Moving backwards "+x)
+        else:
+            print("X has to be between 20-500")
+   
     def left(self,x)
-        print("Moving left"+x)
-        result = self.sendMessage("left "+x)
+        if (x >= 20 and x <= 500):
+            result = self.sendMessage("left "+x)
+            print("Moving left "+x)
+        else:
+            print("X has to be between 20-500")
 
     def right(self,x)
-        print("Moving right"+x)
-        result = self.sendMessage("right "+x)
-    
-    
+        if (x >= 20 and x <= 500):
+            result = self.sendMessage("right "+x)
+            print("Moving right "+x)
+        else:
+            print("X has to be between 20-500")
+
+
+#Advanced flightcontrols
