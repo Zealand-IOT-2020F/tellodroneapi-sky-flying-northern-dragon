@@ -4,8 +4,8 @@ import time
 
 #here you should interact with the drone
 print("booting")
-
-drone1 = Drone.Drone('192.1.1.1',8889)
+drone1 = Drone.Drone('192.168.10.1',8889)
+#drone1 = Drone.Drone('192.1.1.1',8889)
 
 #Diagnostics
 
