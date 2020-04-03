@@ -34,7 +34,7 @@ class Drone(object):
 
     def connect(self):
         print("command interface initializing")
-        result = self.sendMessage("Command")
+        result = self.sendMessage("command")
         print (result)
 
     def end(self):

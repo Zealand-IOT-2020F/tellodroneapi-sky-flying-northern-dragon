@@ -49,6 +49,7 @@ drone1.land()
 
 
 
+
 drone1.battery()
 
 drone1.ftime()
